@@ -2,7 +2,7 @@
 
 This library allows for easy use of the various Wireling adapter boards. Provides basic functions for using the PCA9544A I²C multiplexer, and power switching. 
 
-For more information on Wirelings, vist [TinyCircuits.com](https://tinycircuits.com/). 
+For more information on Wirelings, visit [TinyCircuits.com](https://tinycircuits.com/). 
 
 ## Basic Example
 
