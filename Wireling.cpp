@@ -28,12 +28,7 @@
 
 #include "Wireling.h"
 #include <Wire.h>
-/*
-wirelingLib::Wireling()
-{
-  lastPort=-1;
-}
-*/
+
 void wirelingLib::begin(void) {
   lastPort=-1;
   Wire.begin();

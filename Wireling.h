@@ -26,12 +26,10 @@
 
 #if defined(ARDUINO_ARCH_SAMD)
   #include "variant.h"
-#else
-  #error "Wireling.h may not have current support this board"
 #endif
 
 #if defined(TINYCIRCUITS_ROBOTZERO)
-  #define WirelingPowerPin      26
+  #define WirelingPowerPin      25
   #define WirelingPowerStateOn  LOW
   #define WirelingPowerStateOff HIGH
 #elif defined(TINYCIRCUITS_WIRELINGZERO)
