@@ -33,13 +33,16 @@ void wirelingLib::begin(void) {
   lastPort=-1;
   Wire.begin();
   pinMode(WirelingPowerPin, OUTPUT);
+#if defined(WirelingPowerPin1)
+  pinMode(WirelingPowerPin1, OUTPUT);
+#endif
   enablePower();
   selectPort(0);
 }
 
 void wirelingLib::selectPort(int newPort) {
 
-#if defined(TINYCIRCUITS_WIRELINGZERO)
+#if defined(_VARIANT_WIRELINGZERO_)
   if(newPort < 0 || newPort > 3)return;
   Wire.changeInterface(newPort);
 #else
@@ -60,10 +63,16 @@ void wirelingLib::selectPort(int newPort) {
 
 void wirelingLib::enablePower() {
   digitalWrite(WirelingPowerPin, WirelingPowerStateOn);
+#if defined(WirelingPowerPin1)
+  digitalWrite(WirelingPowerPin1, WirelingPowerStateOn1);
+#endif
 }
 
 void wirelingLib::disablePower() {
   digitalWrite(WirelingPowerPin, WirelingPowerStateOff);
+#if defined(WirelingPowerPin1)
+  digitalWrite(WirelingPowerPin1, WirelingPowerStateOff1);
+#endif
 }
 
 void wirelingLib::end() {

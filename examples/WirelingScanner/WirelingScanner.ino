@@ -6,7 +6,6 @@
 //  out the state of the analog pin on each port.
 //
 //  Written by Ben Rose for TinyCircuits, https://TinyCircuits.com
-//
 //-------------------------------------------------------------------------------
 
 #include <Wire.h>
@@ -34,15 +33,22 @@ void loop() {
     for (byte I2Caddress = 1; I2Caddress < 127; I2Caddress++ )
     {
       if (I2Caddress != 0x68 && I2Caddress != 0x70) { // Ignore the multiplexer and RTC address
-        Wire.beginTransmission(I2Caddress);
-        if (!Wire.endTransmission()) { // This means that a device has acknowledged the transmission
-          SerialMonitorInterface.print(" 0x");
-          if (I2Caddress < 16) {
-            SerialMonitorInterface.print("0");
+#if defined(_VARIANT_ROBOTZERO_)
+        // On RobotZero, ignore the built in IMU, motor current setting digital potentiometer, and servo driver MCU
+        if (I2Caddress != 0x1C && I2Caddress != 0x2F && I2Caddress != 0x6A) {
+#endif
+          Wire.beginTransmission(I2Caddress);
+          if (!Wire.endTransmission()) { // This means that a device has acknowledged the transmission
+            SerialMonitorInterface.print(" 0x");
+            if (I2Caddress < 16) {
+              SerialMonitorInterface.print("0");
+            }
+            SerialMonitorInterface.print(I2Caddress, HEX);
+            nDevices++;
           }
-          SerialMonitorInterface.print(I2Caddress, HEX);
-          nDevices++;
+#if defined(_VARIANT_ROBOTZERO_)
         }
+#endif
       }
     }
     if (nDevices == 0) {

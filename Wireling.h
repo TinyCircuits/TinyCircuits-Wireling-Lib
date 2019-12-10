@@ -28,11 +28,14 @@
   #include "variant.h"
 #endif
 
-#if defined(TINYCIRCUITS_ROBOTZERO)
+#if defined(_VARIANT_ROBOTZERO_)
   #define WirelingPowerPin      25
   #define WirelingPowerStateOn  LOW
   #define WirelingPowerStateOff HIGH
-#elif defined(TINYCIRCUITS_WIRELINGZERO)
+  #define WirelingPowerPin1      4
+  #define WirelingPowerStateOn1  HIGH
+  #define WirelingPowerStateOff1 LOW
+#elif defined(_VARIANT_WIRELINGZERO_)
   #define WirelingPowerPin      9
   #define WirelingPowerStateOn  LOW
   #define WirelingPowerStateOff HIGH
